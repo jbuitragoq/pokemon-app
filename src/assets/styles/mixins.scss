@@ -1,0 +1,30 @@
+
+// mixins
+
+// media querys
+
+// Use: @include mq-min(xs) {}
+// Return: @media (min-width: 550px) {}
+@mixin mq-min($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        $value: map-get($breakpoints, $breakpoint);
+        @media (min-width: $value) {
+            @content;
+        }
+    } @else {
+
+    }
+}
+
+// Use: @include mq-max(xs) {}
+// Return: @media (max-width: 550px) {}
+@mixin mq-max($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        $value: map-get($breakpoints, $breakpoint);
+        @media (max-width: $value) {
+            @content;
+        }
+    } @else {
+
+    }
+}
