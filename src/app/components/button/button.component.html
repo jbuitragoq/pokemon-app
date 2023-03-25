@@ -1,0 +1,9 @@
+<button
+    [id]="id"
+    [ngStyle]="{'min-width': minWidth}"
+    [disabled]="disabled"
+    (click)="click.emit()"
+    type="button">
+    <img src="../../../assets/icons/plus-solid.svg" [alt]="'Icono ' + iconName" class="icon">
+    <span>{{ label | translate }}</span>
+</button>
