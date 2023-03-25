@@ -19,7 +19,7 @@ export class PokemonService {
     return this.httpGenericService.get<PokemonModel[]>(sUrl);
   }
 
-  createPokemon(pokemon: PokemonModel): Observable<PokemonModel[]> {
+  createPokemon(pokemon: Partial<PokemonModel>): Observable<PokemonModel[]> {
     const sUrl = `${environment.pokemonApi}`;
     return this.httpGenericService.post<PokemonModel[]>(sUrl, pokemon);
   }
