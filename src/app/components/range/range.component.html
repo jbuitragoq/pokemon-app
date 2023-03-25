@@ -1,0 +1,27 @@
+<div
+    class="range"
+    [ngStyle]="{'max-width': maxWidth}">
+    <label
+        *ngIf="label !== ''"
+        [for]="id"
+        class="range__label">
+        {{ label | translate }}:
+    </label>
+    <label
+        class="range__min">
+        {{ minRange }}
+    </label>
+    <input
+        type="range"
+        class="range__box"
+        [id]="id"
+        [name]="label" 
+        [min]="minRange"
+        [max]="maxRange"
+        [step]="stepRange"
+        [formControl]="rangeCtrl">
+    <label
+        class="range__max">
+        {{ maxRange }}
+    </label>
+</div>

@@ -1,0 +1,20 @@
+.range {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    &__label {
+        font-size: 1rem;
+        margin-right: 0.4rem;
+    }
+    &__box {
+        margin-top: -1px;
+    }
+    &__min {
+        font-size: 1rem;
+        margin-right: 0.4rem;
+    }
+    &__max {
+        font-size: 1rem;
+        margin-left: 0.4rem;
+    }
+}
