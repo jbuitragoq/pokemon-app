@@ -43,6 +43,7 @@ export class PokemonPanelComponent {
   public selectedPokemon!: PokemonModel | null;
   public updateTitle = 'pokemonPanel.create';
   public showUpdatePanel = false;
+  public detailPokemon = false;
 
   public alertShow = false;
   public alertBtnCancel = false;
@@ -85,6 +86,11 @@ export class PokemonPanelComponent {
         }
       });
     }
+  }
+
+  showDetailPokemon(data: PokemonModel | null): void {
+    this.selectedPokemon = data;
+    this.detailPokemon = !this.detailPokemon;
   }
 
   newPokemon(): void {

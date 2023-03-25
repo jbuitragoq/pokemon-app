@@ -1,0 +1,11 @@
+@import '../../../../assets/styles/module.scss';
+
+.pokemon-detail {
+    flex-direction: column;
+    background: #666666a1;
+    cursor: pointer;
+    &__name {
+        font-size: 2rem;
+        color: $color-grey-black;
+    }
+}
