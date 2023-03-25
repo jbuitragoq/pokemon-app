@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ButtonComponent } from './button.component';
 
@@ -8,10 +10,21 @@ describe('ButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ButtonComponent ]
+      imports: [
+        BrowserAnimationsModule,
+        TranslateModule.forRoot()
+      ],
+      declarations: [
+        ButtonComponent
+      ],
+      teardown: {
+        destroyAfterEach: false
+      }
     })
     .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(ButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
