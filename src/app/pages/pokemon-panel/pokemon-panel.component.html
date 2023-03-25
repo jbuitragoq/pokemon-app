@@ -1,7 +1,16 @@
 <div class="page-pokemon-panel container">
     <component-title [text]="'pokemonPanel.title'"></component-title>
     <div class="page-pokemon-panel__search">
-        <component-input [placeholder]="'Buscar'" [icon]="'magnifying-glass-solid'"></component-input>
+        <component-input [placeholder]="'pokemonPanel.search'" [icon]="'magnifying-glass-solid'"></component-input>
         <component-button [icon]="'plus-solid'" [label]="'Nuevo'"></component-button>
+    </div>
+    <div class="page-pokemon-panel__table">
+        <component-table [headers]="tableHeaders" [dataTypes]="tableTypes" [dataList]="tableData"></component-table>
+    </div>
+    <div class="page-pokemon-panel__update">
+        <component-title [text]="'pokemonPanel.update'"></component-title>
+        <div>
+            
+        </div>
     </div>
 </div>

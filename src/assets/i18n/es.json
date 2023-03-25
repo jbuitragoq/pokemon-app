@@ -4,6 +4,15 @@
         "continue": "Continuar"
     },
     "pokemonPanel": {
-        "title": "Listado de Pokemon"
+        "title": "Listado de Pokemon",
+        "search": "Buscar",
+        "table": {
+            "name": "Nombre",
+            "image": "Imagen",
+            "attack": "Ataque",
+            "defense": "Defensa",
+            "actions": "Acciones"
+        },
+        "update": "Nuevo Pokemon"
     }
 }
