@@ -5,6 +5,8 @@
     &__label {
         font-size: 1rem;
         margin-right: 0.4rem;
+        min-width: 7rem;
+        text-align: start;
     }
     &__box {
         margin-top: -1px;
