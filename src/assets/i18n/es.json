@@ -1,7 +1,8 @@
 {
     "button": {
-        "accept": "Aceptar",
-        "continue": "Continuar"
+        "new": "Nuevo",
+        "save": "Guardar",
+        "cancel": "Cancelar"
     },
     "pokemonPanel": {
         "title": "Listado de Pokemon",
@@ -13,6 +14,7 @@
             "defense": "Defensa",
             "actions": "Acciones"
         },
-        "update": "Nuevo Pokemon"
+        "update": "Nuevo Pokemon",
+        "url": "url"
     }
 }
