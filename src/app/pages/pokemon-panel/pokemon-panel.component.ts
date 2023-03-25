@@ -63,13 +63,13 @@ export class PokemonPanelComponent {
       attack: [0, Validators.required],
       defense: [0, Validators.required],
       hp: 55,
-      type: "Eléctrico",
+      type: null,
       idAuthor: 1
     });
   }
 
   searchPokemon(id: string): void {
-    this.pokemonForm.reset;
+    this.pokemonForm.reset();
     this.showUpdatePanel = false;
     this.tableData = [];
 
@@ -86,6 +86,7 @@ export class PokemonPanelComponent {
 
   newPokemon(): void {
     this.selectedPokemon = null;
+    this.pokemonForm.reset()
     this.updateTitle = 'pokemonPanel.create';
     this.showUpdatePanel = true;
   }
@@ -134,7 +135,7 @@ export class PokemonPanelComponent {
         const data = [...this.tableData, resp];
         this.tableData = [];
         this.tableData = data;
-        this.pokemonForm.reset;
+        this.pokemonForm.reset();
         this.showUpdatePanel = false;
         this.showAlert('alertMessages.successCreate');
       }
@@ -153,7 +154,7 @@ export class PokemonPanelComponent {
         })
         this.tableData = [];
         this.tableData = data;
-        this.pokemonForm.reset;
+        this.pokemonForm.reset();
         this.showUpdatePanel = false;
         this.showAlert('alertMessages.successUpdate');
       }

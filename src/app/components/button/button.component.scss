@@ -28,7 +28,7 @@ button {
     &:disabled {
         cursor: auto;
         color: $color-grey-base;
-        background-color: $color-grey-5;
+        background-color: $color-primary-light;
         box-shadow: none;
     }
     .icon {
