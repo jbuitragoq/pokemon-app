@@ -49,6 +49,7 @@ export class PokemonPanelComponent {
   public alertDescription = '';
 
   public process!: ProcessType | null;
+  public spinner = false;
 
   constructor(private formBuilder: FormBuilder,
               private pokemonService: PokemonService) {
@@ -74,7 +75,9 @@ export class PokemonPanelComponent {
     this.tableData = [];
 
     if (Number(id) >= 0) {
+      this.spinner = true;
       this.pokemonService.getPokemonByIdAuthor(Number(id)).subscribe((resp: any) => {
+        this.spinner = false;
         if (resp.error) {          
           this.showAlert(resp.messageError || 'alertMessages.errorGet');
         } else {
@@ -126,9 +129,11 @@ export class PokemonPanelComponent {
   }
 
   createPokemon(): void {
+    this.spinner = true;
     const data = {...this.pokemonForm.value};
     if (this.tableData.length > 0) data.idAuthor = this.tableData[0].idAuthor;
     this.pokemonService.createPokemon(data).subscribe((resp: any) => {
+      this.spinner = false;
       if (resp.error) {
         this.showAlert(resp.messageError || 'alertMessages.errorCreate');
       } else {
@@ -143,8 +148,10 @@ export class PokemonPanelComponent {
   }
 
   updatePokemon(): void {
+    this.spinner = true;
     const data = {...this.pokemonForm.value, id: this.selectedPokemon?.id || 0};
     this.pokemonService.updatePokemon(data).subscribe((resp: any) => {
+      this.spinner = false;
       if (resp.error) {
         this.showAlert(resp.messageError || 'alertMessages.errorUpdate');
       } else {
@@ -167,7 +174,9 @@ export class PokemonPanelComponent {
   }
 
   deletePokemon(id: number): void {
+    this.spinner = true;
     this.pokemonService.deletePokemon(id).subscribe((resp: any) => {
+      this.spinner = false;
       if (resp.error) {
         this.showAlert(resp.messageError || 'alertMessages.errorDelete');
       } else {

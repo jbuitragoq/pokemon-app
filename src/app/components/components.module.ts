@@ -7,6 +7,7 @@ import { AlertComponent } from './alert/alert.component';
 import { ButtonComponent } from './button/button.component';
 import { InputComponent } from './input/input.component';
 import { RangeComponent } from './range/range.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 import { TableComponent } from './table/table.component';
 import { TitleComponent } from './title/title.component';
 
@@ -16,6 +17,7 @@ import { TitleComponent } from './title/title.component';
         ButtonComponent,
         InputComponent,
         RangeComponent,
+        SpinnerComponent,
         TableComponent,
         TitleComponent
     ],
@@ -24,6 +26,7 @@ import { TitleComponent } from './title/title.component';
         ButtonComponent,
         InputComponent,
         RangeComponent,
+        SpinnerComponent,
         TableComponent,
         TitleComponent
     ],
