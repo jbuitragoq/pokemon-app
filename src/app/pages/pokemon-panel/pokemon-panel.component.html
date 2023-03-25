@@ -1,5 +1,7 @@
-<div class="container">
+<div class="page-pokemon-panel container">
     <component-title [text]="'pokemonPanel.title'"></component-title>
-    <component-button [icon]="'plus-solid'" [label]="'Nuevo'"></component-button>
-    <component-input [placeholder]="'Buscar'" [icon]="'magnifying-glass-solid'"></component-input>
+    <div class="page-pokemon-panel__search">
+        <component-input [placeholder]="'Buscar'" [icon]="'magnifying-glass-solid'"></component-input>
+        <component-button [icon]="'plus-solid'" [label]="'Nuevo'"></component-button>
+    </div>
 </div>
