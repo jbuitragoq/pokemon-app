@@ -112,6 +112,16 @@ describe('PokemonPanelComponent', () => {
     expect(spy2.mock.calls[0][0]).toEqual('alertMessages.errorGet');
   });
 
+  // showDetailPokemon
+
+  it('showDetailPokemon: should validate that the variables change state', () => {
+    component.selectedPokemon = null;
+    component.detailPokemon = false;
+    component.showDetailPokemon(mockPokemon);
+    expect(component.selectedPokemon).toEqual(mockPokemon);
+    expect(component.detailPokemon).toBeTruthy();
+  });
+
   // newPokemon
 
   it('newPokemon: should validate that the variables change state', () => {
