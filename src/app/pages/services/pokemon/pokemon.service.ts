@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpGenericService } from 'src/app/core/services/http-generic/http-generic.service';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { HttpGenericService } from 'src/app/core/services/http-generic/http-generic.service';
+import { PokemonModel } from 'src/app/core/models/pokemon.model';
 
 @Injectable({ providedIn: 'root' })
-export class ListsService {
+export class PokemonService {
 
   constructor(private httpGenericService: HttpGenericService) {}
 

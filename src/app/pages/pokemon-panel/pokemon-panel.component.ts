@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FieldType } from 'src/app/components/table/table.component';
+import { PokemonService } from 'src/app/pages/services/pokemon/pokemon.service';
+import { PokemonModel } from 'src/app/core/models/pokemon.model';
 
 @Component({
   selector: 'app-pokemon-panel',
@@ -33,22 +35,20 @@ export class PokemonPanelComponent {
         '../../../assets/icons/trash-solid.svg'
       ]
     }
-  ]
-  tableData = [
-    {
-      name: 'name1',
-      image: 'image1',
-      attack: 'attack1',
-      defense: 'defense1',
-      actions: 'actions1',
-    },
-    {
-      name: 'name2',
-      image: 'image2',
-      attack: 'attack2',
-      defense: 'defense2',
-      actions: 'actions2',
-    }
-  ]
+  ];
+  tableData: PokemonModel[] = [];
 
+  constructor(private pokemonService: PokemonService) {
+    this.loadPokemonData();
+  }
+
+  loadPokemonData() {
+    this.pokemonService.getPokemon(2).subscribe((data: any) => {
+      if (data.error) {
+        console.log('Error en consulta de pokemons');
+      } else {
+        this.tableData = data;
+      }
+    })
+  }
 }

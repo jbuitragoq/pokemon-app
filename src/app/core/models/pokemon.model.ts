@@ -1,4 +1,4 @@
-class PokemonModel {
+export class PokemonModel {
     id: number;
     name: string;
     image: string;
