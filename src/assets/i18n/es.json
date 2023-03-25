@@ -2,5 +2,8 @@
     "button": {
         "accept": "Aceptar",
         "continue": "Continuar"
+    },
+    "pokemonPanel": {
+        "title": "Listado de Pokemon"
     }
 }
