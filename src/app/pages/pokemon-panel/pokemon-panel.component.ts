@@ -38,55 +38,131 @@ export class PokemonPanelComponent {
     }
   ];
   public tableData: PokemonModel[] = [];
-
   public showUpdatePanel = false;
-
   public pokemonForm!: FormGroup;
+  public selectedPokemon!: PokemonModel | null;
+  public updateTitle = 'pokemonPanel.create';
 
   constructor(private formBuilder: FormBuilder,
               private pokemonService: PokemonService) {
 
     this.createForm();
-    this.loadPokemonData();
   }
 
   createForm(): void {
     this.pokemonForm = this.formBuilder.group({
-      name: [ '', Validators.required ],
-      image: [ '', Validators.required ],
-      attack: [ 0, Validators.required ],
-      defense: [ 0, Validators.required ],
+      name: ['', Validators.required],
+      image: ['', Validators.required],
+      attack: [0, Validators.required],
+      defense: [0, Validators.required],
       hp: 55,
       type: "Eléctrico",
-      idAuthor: 2
+      idAuthor: 1
     });
   }
 
-  loadPokemonData(): void {
-    // this.pokemonService.getPokemon(2).subscribe((data: any) => {
-    //   if (data.error) {
-    //     console.log('Error en consulta de pokemons');
-    //   } else {
-    //     this.tableData = data;
-    //   }
-    // })
+  searchPokemon(id: string): void {
+    this.pokemonForm.reset;
+    this.showUpdatePanel = false;
+    this.tableData = [];
+
+    if (Number(id) >= 0) {
+      this.pokemonService.getPokemonByIdAuthor(Number(id)).subscribe((resp: any) => {
+        if (resp.error) {          
+          console.log('Error en consulta de pokemons');
+        } else {
+          this.tableData = resp;
+        }
+      });
+    }
   }
 
   newPokemon(): void {
+    this.selectedPokemon = null;
+    this.updateTitle = 'pokemonPanel.create';
     this.showUpdatePanel = true;
   }
 
   selectOptionInput(data: any, input: string): void {
     this.pokemonForm.controls[input].setValue(data);
-    console.log('data', data);
+  }
+
+  selectAction({ object, action}: (any)): void {
+    switch (action) {
+      case 0:
+        this.newPokemon();
+        setTimeout(() => {
+          this.pokemonForm.controls['name'].reset(object.name);
+          this.pokemonForm.controls['image'].reset(object.image);
+          this.pokemonForm.controls['attack'].reset(object.attack);
+          this.pokemonForm.controls['defense'].reset(object.defense);
+          this.pokemonForm.controls['hp'].reset(object.hp);
+          this.pokemonForm.controls['type'].reset(object.type);
+          this.pokemonForm.controls['idAuthor'].reset(object.idAuthor);
+          this.selectedPokemon = {...object};
+          this.updateTitle = 'pokemonPanel.update';
+        }, 100);
+        break;
+      case 1:
+        this.deletePokemon(object.id);
+        break;
+    }
   }
   
   savePokemon(): void {
+    if (this.pokemonForm.invalid) return;
+    if (this.updateTitle.includes('create')) this.createPokemon();
+    if (this.updateTitle.includes('update')) this.updatePokemon();
+  }
 
+  createPokemon(): void {
+    const data = {...this.pokemonForm.value};
+    if (this.tableData.length > 0) data.idAuthor = this.tableData[0].idAuthor;
+    this.pokemonService.createPokemon(data).subscribe((resp: any) => {
+      if (resp.error) {
+        console.log('Error al crear pokemon');
+      } else {
+        const data = [...this.tableData, resp];
+        this.tableData = [];
+        this.tableData = data;
+        this.pokemonForm.reset;
+        this.showUpdatePanel = false;
+      }
+    });
+  }
+
+  updatePokemon(): void {
+    const data = {...this.pokemonForm.value, id: this.selectedPokemon?.id || 0};
+    this.pokemonService.updatePokemon(data).subscribe((resp: any) => {
+      if (resp.error) {
+        console.log('Error al actualizar pokemon');
+      } else {
+        const data = this.tableData.map(pk => {
+          if (pk.id === this.selectedPokemon?.id) return resp;
+          return pk;
+        })
+        this.tableData = [];
+        this.tableData = data;
+        this.pokemonForm.reset;
+        this.showUpdatePanel = false;
+      }
+    });
   }
 
   cancelProcess(): void {
     this.pokemonForm.reset();
     this.showUpdatePanel = false;
+  }
+
+  deletePokemon(id: number): void {
+    this.pokemonService.deletePokemon(id).subscribe((resp: any) => {
+      if (resp.error) {
+        console.log('Error al eliminar pokemon');
+      } else {
+        const data = this.tableData.filter(x => x.id !== id);
+        this.tableData = [];
+        this.tableData = data;
+      }
+    });
   }
 }

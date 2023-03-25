@@ -16,6 +16,10 @@ export class RangeComponent {
   @Input() actualRange = 0;
   @Input() maxWidth = 'auto';
 
+  @Input() set setValue(value: number) {
+    this.actualRange = value;
+  }
+
   @Output() selected = new EventEmitter<any>();
 
   changeRange(event: any): void {

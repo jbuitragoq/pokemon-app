@@ -4,33 +4,38 @@
         <component-input
             [id]="'input-search'" 
             [placeholder]="'pokemonPanel.search'" 
-            [icon]="'magnifying-glass-solid'">
+            [icon]="'magnifying-glass-solid'"
+            [inputType]="'number'"
+            (blur)="searchPokemon($event)">
         </component-input>
         <component-button
             [icon]="'plus-solid'"
             [label]="'button.new'"
-            (clickbtn)="newPokemon()">
+            (clickBtn)="newPokemon()">
         </component-button>
     </div>
     <div class="page-pokemon-panel__table">
         <component-table
             [headers]="tableHeaders"
             [dataTypes]="tableTypes"
-            [dataList]="tableData">
+            [dataList]="tableData"
+            (clickIcon)="selectAction($event)">
         </component-table>
     </div>
     <div *ngIf="showUpdatePanel" class="page-pokemon-panel__update">
-        <component-title [text]="'pokemonPanel.update'"></component-title>
+        <component-title [text]="updateTitle"></component-title>
         <div class="page-pokemon-panel__update-fields">
             <component-input
                 [id]="'input-name'"
                 [label]="'pokemonPanel.table.name'"
                 [required]="true"
+                [setValue]="selectedPokemon?.name"
                 (selected)="selectOptionInput($event, 'name')">
             </component-input>
             <component-range
                 [id]="'range-attack'"
                 [label]="'pokemonPanel.table.attack'"
+                [setValue]="selectedPokemon?.attack || 0"
                 (selected)="selectOptionInput($event, 'attack')">
             </component-range>
             <component-input
@@ -38,11 +43,13 @@
                 [label]="'pokemonPanel.table.image'"
                 [required]="true"
                 [placeholder]="'pokemonPanel.url'"
+                [setValue]="selectedPokemon?.image"
                 (selected)="selectOptionInput($event, 'image')">
             </component-input>
             <component-range
                 [id]="'range-defense'"
                 [label]="'pokemonPanel.table.defense'"
+                [setValue]="selectedPokemon?.defense || 0"
                 (selected)="selectOptionInput($event, 'defense')">
             </component-range>
         </div>
@@ -52,13 +59,13 @@
                 [label]="'button.save'"
                 [margin]="'0rem 0.2rem'"
                 [disabled]="pokemonForm.invalid"
-                (clickbtn)="savePokemon()">
+                (clickBtn)="savePokemon()">
             </component-button>
             <component-button
                 [icon]="'xmark-solid'" 
                 [label]="'button.cancel'" 
                 [margin]="'0rem 0.2rem'"
-                (clickbtn)="cancelProcess()">
+                (clickBtn)="cancelProcess()">
             </component-button>
         </div>
     </div>

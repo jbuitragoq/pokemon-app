@@ -20,6 +20,7 @@ export class InputComponent {
   @Input() disabled = false;
   @Input() maxWidth = 'auto';
   @Input() icon = '';
+  @Input() inputType = 'text';
 
   @Input() set required(status: boolean) {
     this._required = status;
@@ -36,12 +37,17 @@ export class InputComponent {
   }
 
   @Output() selected = new EventEmitter<any>();
+  @Output() blur = new EventEmitter<any>();
 
   constructor() {
     this.inputTextCtrl.valueChanges.subscribe(text => {
       this.showErrorRequired = this.inputTextCtrl.touched && this.inputTextCtrl.errors?.['required'];
       this.selected.emit(text);
     });
+  }
+
+  onBlur(): void {
+    this.blur.emit(this.inputTextCtrl.value);
   }
 
 }

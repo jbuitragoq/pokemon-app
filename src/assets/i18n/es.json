@@ -14,7 +14,8 @@
             "defense": "Defensa",
             "actions": "Acciones"
         },
-        "update": "Nuevo Pokemon",
+        "create": "Nuevo Pokemon",
+        "update": "Editar Pokemon",
         "url": "url"
     }
 }

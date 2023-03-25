@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpGenericService } from 'src/app/core/services/http-generic/http-generic.service';
 import { PokemonModel } from 'src/app/core/models/pokemon.model';
@@ -14,7 +14,7 @@ export class PokemonService {
     return this.httpGenericService.get<PokemonModel[]>(sUrl);
   }
 
-  getPokemon(idAuthor: number): Observable<PokemonModel[]> {
+  getPokemonByIdAuthor(idAuthor: number): Observable<PokemonModel[]> {
     const sUrl = `${environment.pokemonApi}/?idAuthor=${idAuthor}`;
     return this.httpGenericService.get<PokemonModel[]>(sUrl);
   }
@@ -31,6 +31,8 @@ export class PokemonService {
 
   deletePokemon(id: number): Observable<string> {
     const sUrl = `${environment.pokemonApi}/${id}`;
-    return this.httpGenericService.delete(sUrl);
+    return this.httpGenericService.delete(sUrl).pipe(
+      map(resp => resp === null ? "Pokemon deleted" : resp),
+    );
   }
 }

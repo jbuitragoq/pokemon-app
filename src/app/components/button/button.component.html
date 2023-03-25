@@ -2,7 +2,7 @@
     [id]="id"
     [ngStyle]="{'min-width': minWidth, 'margin': margin}"
     [disabled]="disabled"
-    (click)="clickbtn.emit()"
+    (click)="clickBtn.emit()"
     type="button">
     <img [src]="'../../../assets/icons/' + icon + '.svg'" [alt]="'Icono ' + icon" class="icon">
     <span>{{ label | translate }}</span>

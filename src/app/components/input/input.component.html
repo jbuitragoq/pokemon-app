@@ -8,11 +8,12 @@
         {{ label | translate }}:
     </label>
     <input
-        type="text"
         class="input__box"
         [id]="id"
+        [type]="inputType"
         [formControl]="inputTextCtrl"
         [placeholder]="placeholder | translate"
-        [ngClass]="{'input__error': showError || showErrorRequired, 'input__box-icon': icon !== ''}" />
+        [ngClass]="{'input__error': showError || showErrorRequired, 'input__box-icon': icon !== ''}"
+        (blur)="onBlur()"/>
     <img *ngIf="icon !== ''" [src]="'../../../assets/icons/' + icon + '.svg'" [alt]="'Icono ' + icon" class="input__icon icon">
 </div>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'component-table',
@@ -10,6 +10,7 @@ export class TableComponent {
   @Input() headers!: Header;
   @Input() dataTypes!: Field[];
   @Input() dataList: any[] = [];
+  @Output() clickIcon = new EventEmitter<any>();
 }
 
 interface Header {

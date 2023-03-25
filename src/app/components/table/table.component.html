@@ -12,7 +12,8 @@
                 <img [src]="row[header]" alt="Imagen Registro" class="icon table__icon-pokemon">
             </span>
             <span *ngIf="dataTypes[idx].type === 'action'" class="center">
-                <img *ngFor="let url of dataTypes[idx].actions" [src]="url" alt="Icono acción" class="icon">
+                <img *ngFor="let url of dataTypes[idx].actions; let idxIcon = index" [src]="url" alt="Icono acción" class="icon"
+                     (click)="clickIcon.emit({ object: row, action: idxIcon })">
             </span>
         </td>
     </tr>
