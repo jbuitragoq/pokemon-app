@@ -8,17 +8,11 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 })
 export class ButtonComponent {
 
-  iconName = '';
-  iconUrl = '';
-
   @Input() id!: string;
   @Input() label!: string;
   @Input() disabled = false;
   @Input() minWidth = '8rem';
-  @Input() set icon(name: string) {
-    this.iconName = name;
-    this.iconUrl = `src/assets/icons/${name}`;
-  };
+  @Input() icon = '';
   @Output() click = new EventEmitter<void>();
 
 }

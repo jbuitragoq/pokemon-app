@@ -1,0 +1,18 @@
+<div
+    class="input"
+    [ngStyle]="{'max-width': maxWidth}">
+    <label
+        *ngIf="label !== ''"
+        [for]="id"
+        class="input__label">
+        {{ label | translate }}:
+    </label>
+    <input
+        type="text"
+        class="input__box"
+        [id]="id"
+        [formControl]="inputTextCtrl"
+        [placeholder]="placeholder | translate"
+        [ngClass]="{'input__error': showError || showErrorRequired, 'input__box-icon': icon !== ''}" />
+    <img *ngIf="icon !== ''" [src]="'../../../assets/icons/' + icon + '.svg'" [alt]="'Icono ' + icon" class="input__icon icon">
+</div>
