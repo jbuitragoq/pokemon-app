@@ -41,7 +41,7 @@ export class InputComponent {
 
   constructor() {
     this.inputTextCtrl.valueChanges.subscribe(text => {
-      this.showErrorRequired = this.inputTextCtrl.touched && this.inputTextCtrl.errors?.['required'];
+      this.showErrorRequired = this.inputTextCtrl.errors?.['required'] && this.inputTextCtrl.touched;
       this.selected.emit(text);
     });
   }
