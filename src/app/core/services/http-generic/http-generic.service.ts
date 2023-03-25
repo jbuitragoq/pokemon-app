@@ -119,6 +119,6 @@ export class HttpGenericService {
    */
   public handleError(proceso: string, error: HttpErrorResponse): Observable<any> {
     console.log(`Failed ${proceso} - Error ${error.message}`);
-    return of({ error: true });
+    return of({ error: true, messageError: error?.error || '' });
   }
 }

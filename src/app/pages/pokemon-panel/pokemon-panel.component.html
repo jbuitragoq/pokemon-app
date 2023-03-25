@@ -9,6 +9,7 @@
             (blur)="searchPokemon($event)">
         </component-input>
         <component-button
+            [id]="'button-search'"
             [icon]="'plus-solid'"
             [label]="'button.new'"
             (clickBtn)="newPokemon()">
@@ -55,6 +56,7 @@
         </div>
         <div class="page-pokemon-panel__update-buttons">
             <component-button
+                [id]="'button-save'"
                 [icon]="'floppy-disk-solid'"
                 [label]="'button.save'"
                 [margin]="'0rem 0.2rem'"
@@ -62,6 +64,7 @@
                 (clickBtn)="savePokemon()">
             </component-button>
             <component-button
+                [id]="'button-cancel'"
                 [icon]="'xmark-solid'" 
                 [label]="'button.cancel'" 
                 [margin]="'0rem 0.2rem'"
@@ -70,3 +73,10 @@
         </div>
     </div>
 </form>
+<component-alert
+    [description]="alertDescription"
+    [showAlert]="alertShow"
+    [showCancel]="alertBtnCancel"
+    (clickAccept)="acceptAlert()"
+    (clickCancel)="acceptCancel()">
+</component-alert>

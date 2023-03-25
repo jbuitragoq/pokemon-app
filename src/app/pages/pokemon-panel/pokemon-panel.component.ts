@@ -38,10 +38,17 @@ export class PokemonPanelComponent {
     }
   ];
   public tableData: PokemonModel[] = [];
-  public showUpdatePanel = false;
+  
   public pokemonForm!: FormGroup;
   public selectedPokemon!: PokemonModel | null;
   public updateTitle = 'pokemonPanel.create';
+  public showUpdatePanel = false;
+
+  public alertShow = false;
+  public alertBtnCancel = false;
+  public alertDescription = '';
+
+  public process!: ProcessType | null;
 
   constructor(private formBuilder: FormBuilder,
               private pokemonService: PokemonService) {
@@ -69,7 +76,7 @@ export class PokemonPanelComponent {
     if (Number(id) >= 0) {
       this.pokemonService.getPokemonByIdAuthor(Number(id)).subscribe((resp: any) => {
         if (resp.error) {          
-          console.log('Error en consulta de pokemons');
+          this.showAlert(resp.messageError || 'alertMessages.errorGet');
         } else {
           this.tableData = resp;
         }
@@ -92,6 +99,7 @@ export class PokemonPanelComponent {
       case 0:
         this.newPokemon();
         setTimeout(() => {
+          this.selectedPokemon = {...object};
           this.pokemonForm.controls['name'].reset(object.name);
           this.pokemonForm.controls['image'].reset(object.image);
           this.pokemonForm.controls['attack'].reset(object.attack);
@@ -99,12 +107,13 @@ export class PokemonPanelComponent {
           this.pokemonForm.controls['hp'].reset(object.hp);
           this.pokemonForm.controls['type'].reset(object.type);
           this.pokemonForm.controls['idAuthor'].reset(object.idAuthor);
-          this.selectedPokemon = {...object};
           this.updateTitle = 'pokemonPanel.update';
         }, 100);
         break;
       case 1:
-        this.deletePokemon(object.id);
+        this.process = ProcessType.delete;
+        this.selectedPokemon = {...object};
+        this.showAlert('alertMessages.confirmDelete', true);
         break;
     }
   }
@@ -120,13 +129,14 @@ export class PokemonPanelComponent {
     if (this.tableData.length > 0) data.idAuthor = this.tableData[0].idAuthor;
     this.pokemonService.createPokemon(data).subscribe((resp: any) => {
       if (resp.error) {
-        console.log('Error al crear pokemon');
+        this.showAlert(resp.messageError || 'alertMessages.errorCreate');
       } else {
         const data = [...this.tableData, resp];
         this.tableData = [];
         this.tableData = data;
         this.pokemonForm.reset;
         this.showUpdatePanel = false;
+        this.showAlert('alertMessages.successCreate');
       }
     });
   }
@@ -135,7 +145,7 @@ export class PokemonPanelComponent {
     const data = {...this.pokemonForm.value, id: this.selectedPokemon?.id || 0};
     this.pokemonService.updatePokemon(data).subscribe((resp: any) => {
       if (resp.error) {
-        console.log('Error al actualizar pokemon');
+        this.showAlert(resp.messageError || 'alertMessages.errorUpdate');
       } else {
         const data = this.tableData.map(pk => {
           if (pk.id === this.selectedPokemon?.id) return resp;
@@ -145,6 +155,7 @@ export class PokemonPanelComponent {
         this.tableData = data;
         this.pokemonForm.reset;
         this.showUpdatePanel = false;
+        this.showAlert('alertMessages.successUpdate');
       }
     });
   }
@@ -157,12 +168,37 @@ export class PokemonPanelComponent {
   deletePokemon(id: number): void {
     this.pokemonService.deletePokemon(id).subscribe((resp: any) => {
       if (resp.error) {
-        console.log('Error al eliminar pokemon');
+        this.showAlert(resp.messageError || 'alertMessages.errorDelete');
       } else {
         const data = this.tableData.filter(x => x.id !== id);
         this.tableData = [];
         this.tableData = data;
+        this.showAlert('alertMessages.successDelete');
       }
     });
   }
+
+  showAlert(text: string, cancelBtn = false): void {
+    this.alertDescription = text;
+    this.alertBtnCancel = cancelBtn;
+    this.alertShow = true;
+  }
+
+  acceptAlert(): void {
+    this.alertShow = false;
+    switch (this.process) {
+      case ProcessType.delete:
+        this.deletePokemon(this.selectedPokemon?.id || 0);
+        break;
+    }
+    this.process = null;
+  }
+
+  acceptCancel(): void {
+    this.alertShow = false;
+  }
+}
+
+enum ProcessType {
+  delete = 'delete'
 }
