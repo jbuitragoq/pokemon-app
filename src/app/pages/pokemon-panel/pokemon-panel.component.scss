@@ -1,0 +1,30 @@
+@import '../../../assets/styles/module.scss';
+
+.page-pokemon-panel {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    &__search {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+    &__table {
+        margin-bottom: 1rem;
+    }
+    &__update {
+        text-align: center;
+        border: $color-grey-4 1px solid;
+        padding: 2rem 3rem;
+        &-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+            row-gap: 1.2rem;
+        }
+        &-buttons {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

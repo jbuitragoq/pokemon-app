@@ -1,0 +1,19 @@
+@import '../../../assets/styles/module.scss';
+
+.alert {
+    &__modal {
+        background: $color-grey-white;
+        min-width: 30vw;
+        padding: 2rem 1rem;
+        border-radius: 0.6rem;
+    }
+    &__description {
+        font-size: 1.1rem;
+        text-align: center;
+        margin-bottom: 0.8rem;
+    }
+    &__buttons {
+        display: flex;
+        justify-content: center;
+    }
+}

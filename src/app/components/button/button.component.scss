@@ -1,0 +1,37 @@
+@import '../../../assets/styles/module.scss';
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    border: none;
+    background-color: $color-primary-base;
+    color: $color-grey-white;
+    font-family: $font-family;
+    cursor: pointer;
+    &:hover {
+        background-color: $color-primary-dark;
+    }
+    &:focus {
+        box-shadow: 0 0 0 2px $color-grey-white,
+                    0 0 0 4px $color-primary-base,
+                    0 1px 2px 0 $color-grey-black;
+    }
+    &:active {
+        box-shadow: 2px  2px 3px #00000029 inset;
+    }
+    &.disabled,
+    &:disabled {
+        cursor: auto;
+        color: $color-grey-base;
+        background-color: $color-primary-light;
+        box-shadow: none;
+    }
+    .icon {
+        margin-right: 8px;
+    }
+}

@@ -1,0 +1,22 @@
+<div class="alert curtain" *ngIf="showAlert">
+    <div class="alert__modal">
+        <p class="alert__description">{{ description | translate }}</p>
+        <div class="alert__buttons">
+            <component-button
+                [id]="'button-alert-accept'"
+                [icon]="'check-solid'" 
+                [label]="'button.accept'" 
+                [margin]="'0rem 0.2rem'"
+                (clickBtn)="clickButton(1)">
+            </component-button>
+            <component-button
+                *ngIf="showCancel"
+                [id]="'button-alert-cancel'"
+                [icon]="'xmark-solid'" 
+                [label]="'button.cancel'" 
+                [margin]="'0rem 0.2rem'"
+                (clickBtn)="clickButton(0)">
+            </component-button>
+        </div>
+    </div>
+</div>

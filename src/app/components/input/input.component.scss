@@ -1,0 +1,43 @@
+@import '../../../assets/styles/module.scss';
+
+.input {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    &__label {
+        font-size: 1rem;
+        margin-right: 0.4rem;
+        min-width: 7rem;
+        text-align: start;
+    }
+    &__box {
+        font-size: 1rem;
+        padding: 0.4rem;
+        border: $color-grey-4 1.8px solid;
+    }
+    &__box-icon {
+        padding-left: 2rem;
+    }
+    &__box:hover {
+        border: $color-grey-base 1px solid;
+        box-shadow: 0px 0.2px 1px 0.2px $color-grey-4;
+        outline: 0px;
+        box-shadow: none;
+    }
+    &__box:focus-visible {
+        color: $color-grey-1;
+        border: $color-grey-base 1px solid;
+        box-shadow: 0px 0.2px 1px 0.2px $color-grey-4;
+        outline: 0px;
+        box-shadow: none;
+    }
+    &__icon {
+        position: relative;
+        translate: -12rem;
+    }
+    &__error {
+        color: $color-grey-1;
+        box-shadow: 0px 0.2px 1px 0.2px $color-alert-error;
+        border: $color-alert-error 1px solid;
+    }
+}

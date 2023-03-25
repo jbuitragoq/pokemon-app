@@ -1,0 +1,32 @@
+{
+    "button": {
+        "new": "Nuevo",
+        "save": "Guardar",
+        "accept": "Aceptar",
+        "cancel": "Cancelar"
+    },
+    "pokemonPanel": {
+        "title": "Listado de Pokemon",
+        "search": "Buscar",
+        "table": {
+            "name": "Nombre",
+            "image": "Imagen",
+            "attack": "Ataque",
+            "defense": "Defensa",
+            "actions": "Acciones"
+        },
+        "create": "Nuevo Pokemon",
+        "update": "Editar Pokemon",
+        "url": "url"
+    },
+    "alertMessages": {
+        "successCreate": "¡Felicitaciones, haz capturado un nuevo pokemon!",
+        "successUpdate": "¡Felicitaciones, tú pokemon a evolucionado exitosamente!",
+        "successDelete": "¡Adiós pokemon, te vamos a extrañar!",
+        "errorGet": "Error durante el proceso de consulta",
+        "errorCreate": "Error durante el proceso de crear",
+        "errorUpdate": "Error durante el proceso de actualizar",
+        "errorDelete": "Error durante el proceso de eliminar",
+        "confirmDelete": "¿Está seguro de eliminar el Pokemon?"
+    }
+}
