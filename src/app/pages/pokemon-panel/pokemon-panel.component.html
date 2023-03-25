@@ -20,6 +20,7 @@
             [headers]="tableHeaders"
             [dataTypes]="tableTypes"
             [dataList]="tableData"
+            (clickImage)="showDetailPokemon($event)"
             (clickIcon)="selectAction($event)">
         </component-table>
     </div>
@@ -73,6 +74,11 @@
         </div>
     </div>
 </form>
+<detail-pokemon
+    *ngIf="detailPokemon"
+    [pokemon]="selectedPokemon"
+    (close)="showDetailPokemon(null)">
+</detail-pokemon>
 <component-alert
     [description]="alertDescription"
     [showAlert]="alertShow"

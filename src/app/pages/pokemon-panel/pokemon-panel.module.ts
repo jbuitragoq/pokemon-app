@@ -5,10 +5,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PokemonPanelRoutesModule } from './pokemon-panel.routes';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { PokemonPanelComponent } from './pokemon-panel.component';
+import { DetailPokemonComponent } from './detail-pokemon/detail-pokemon.component';
 
 @NgModule({
     declarations: [
-        PokemonPanelComponent
+        PokemonPanelComponent,
+        DetailPokemonComponent
     ],
     imports: [
         CommonModule,

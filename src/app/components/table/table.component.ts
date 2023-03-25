@@ -10,6 +10,7 @@ export class TableComponent {
   @Input() headers!: Header;
   @Input() dataTypes!: Field[];
   @Input() dataList: any[] = [];
+  @Output() clickImage = new EventEmitter<any>();
   @Output() clickIcon = new EventEmitter<any>();
 }
 
