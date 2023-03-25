@@ -52,7 +52,7 @@ export class PokemonPanelComponent {
   public spinner = false;
 
   constructor(private formBuilder: FormBuilder,
-              private pokemonService: PokemonService) {
+              public pokemonService: PokemonService) {
 
     this.createForm();
   }
@@ -98,7 +98,7 @@ export class PokemonPanelComponent {
     this.pokemonForm.controls[input].setValue(data);
   }
 
-  selectAction({ object, action}: (any)): void {
+  selectAction({ object, action }: (any)): void {
     switch (action) {
       case 0:
         this.newPokemon();
@@ -130,8 +130,8 @@ export class PokemonPanelComponent {
 
   createPokemon(): void {
     this.spinner = true;
-    const data = {...this.pokemonForm.value};
-    if (this.tableData.length > 0) data.idAuthor = this.tableData[0].idAuthor;
+    const data = {...this.pokemonForm.value };
+    data.idAuthor = this.tableData.length > 0 ? this.tableData[0].idAuthor : 1;
     this.pokemonService.createPokemon(data).subscribe((resp: any) => {
       this.spinner = false;
       if (resp.error) {
@@ -209,6 +209,6 @@ export class PokemonPanelComponent {
   }
 }
 
-enum ProcessType {
+export enum ProcessType {
   delete = 'delete'
 }
