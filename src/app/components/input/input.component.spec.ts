@@ -74,7 +74,7 @@ describe('InputComponent', () => {
     expect(component.showErrorRequired).toBeFalsy();
   });
 
-  it('inputTextCtrl: should validate whether the control has already been touched and output the value received', () => {
+  it('inputTextCtrl: should validate whether the control has already been touched and emit the value received', () => {
     component.showErrorRequired = true;
     component.inputTextCtrl.setValidators(Validators.required);
     component.inputTextCtrl.markAsTouched();
@@ -84,7 +84,7 @@ describe('InputComponent', () => {
 
   // onBlur
 
-  it('onBlur: should validate whether the input has lost focus and output the received value', () => {
+  it('onBlur: should validate whether the input has lost focus and emit the received value', () => {
     component.inputTextCtrl.setValue('test');
     const spy = jest.spyOn(component.blur, 'emit').mockImplementation();
     component.onBlur();
