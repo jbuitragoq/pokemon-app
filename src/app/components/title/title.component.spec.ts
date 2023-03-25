@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { TitleComponent } from './title.component';
 
@@ -8,10 +10,21 @@ describe('TitleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TitleComponent ]
+      imports: [
+        BrowserAnimationsModule,
+        TranslateModule.forRoot()
+      ],
+      declarations: [
+        TitleComponent
+      ],
+      teardown: {
+        destroyAfterEach: false
+      }
     })
     .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(TitleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
