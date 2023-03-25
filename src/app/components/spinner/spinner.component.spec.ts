@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { SpinnerComponent } from './spinner.component';
 
@@ -8,10 +10,21 @@ describe('SpinnerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SpinnerComponent ]
+      imports: [
+        BrowserAnimationsModule,
+        TranslateModule.forRoot()
+      ],
+      declarations: [
+        SpinnerComponent
+      ],
+      teardown: {
+        destroyAfterEach: false
+      }
     })
     .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(SpinnerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
