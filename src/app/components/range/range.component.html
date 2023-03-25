@@ -19,7 +19,8 @@
         [min]="minRange"
         [max]="maxRange"
         [step]="stepRange"
-        [formControl]="rangeCtrl">
+        [value]="actualRange"
+        (input)="changeRange($event)">
     <label
         class="range__max">
         {{ maxRange }}

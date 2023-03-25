@@ -14,6 +14,6 @@ export class ButtonComponent {
   @Input() minWidth = '8rem';
   @Input() margin = 'auto';
   @Input() icon = '';
-  @Output() click = new EventEmitter<void>();
+  @Output() clickbtn = new EventEmitter<void>();
 
 }

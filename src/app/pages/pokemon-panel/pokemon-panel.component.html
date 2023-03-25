@@ -1,23 +1,65 @@
-<div class="page-pokemon-panel container">
+<form (keydown.enter)="$event.preventDefault()" [formGroup]="pokemonForm" class="page-pokemon-panel container">
     <component-title [text]="'pokemonPanel.title'"></component-title>
     <div class="page-pokemon-panel__search">
-        <component-input [id]="'input-search'" [placeholder]="'pokemonPanel.search'" [icon]="'magnifying-glass-solid'"></component-input>
-        <component-button [icon]="'plus-solid'" [label]="'button.new'"></component-button>
+        <component-input
+            [id]="'input-search'" 
+            [placeholder]="'pokemonPanel.search'" 
+            [icon]="'magnifying-glass-solid'">
+        </component-input>
+        <component-button
+            [icon]="'plus-solid'"
+            [label]="'button.new'"
+            (clickbtn)="newPokemon()">
+        </component-button>
     </div>
     <div class="page-pokemon-panel__table">
-        <component-table [headers]="tableHeaders" [dataTypes]="tableTypes" [dataList]="tableData"></component-table>
+        <component-table
+            [headers]="tableHeaders"
+            [dataTypes]="tableTypes"
+            [dataList]="tableData">
+        </component-table>
     </div>
-    <div class="page-pokemon-panel__update">
+    <div *ngIf="showUpdatePanel" class="page-pokemon-panel__update">
         <component-title [text]="'pokemonPanel.update'"></component-title>
         <div class="page-pokemon-panel__update-fields">
-            <component-input [id]="'input-name'" [label]="'pokemonPanel.table.name'"></component-input>
-            <component-range [id]="'range-attack'" [label]="'pokemonPanel.table.attack'"></component-range>
-            <component-input [id]="'input-image'" [label]="'pokemonPanel.table.image'" [placeholder]="'pokemonPanel.url'"></component-input>
-            <component-range [id]="'range-defense'" [label]="'pokemonPanel.table.defense'"></component-range>
+            <component-input
+                [id]="'input-name'"
+                [label]="'pokemonPanel.table.name'"
+                [required]="true"
+                (selected)="selectOptionInput($event, 'name')">
+            </component-input>
+            <component-range
+                [id]="'range-attack'"
+                [label]="'pokemonPanel.table.attack'"
+                (selected)="selectOptionInput($event, 'attack')">
+            </component-range>
+            <component-input
+                [id]="'input-image'"
+                [label]="'pokemonPanel.table.image'"
+                [required]="true"
+                [placeholder]="'pokemonPanel.url'"
+                (selected)="selectOptionInput($event, 'image')">
+            </component-input>
+            <component-range
+                [id]="'range-defense'"
+                [label]="'pokemonPanel.table.defense'"
+                (selected)="selectOptionInput($event, 'defense')">
+            </component-range>
         </div>
         <div class="page-pokemon-panel__update-buttons">
-            <component-button [icon]="'floppy-disk-solid'" [label]="'button.save'" [margin]="'0rem 0.2rem'"></component-button>
-            <component-button [icon]="'xmark-solid'" [label]="'button.cancel'" [margin]="'0rem 0.2rem'"></component-button>
+            <component-button
+                [icon]="'floppy-disk-solid'"
+                [label]="'button.save'"
+                [margin]="'0rem 0.2rem'"
+                [disabled]="pokemonForm.invalid"
+                (clickbtn)="savePokemon()">
+            </component-button>
+            <component-button
+                [icon]="'xmark-solid'" 
+                [label]="'button.cancel'" 
+                [margin]="'0rem 0.2rem'"
+                (clickbtn)="cancelProcess()">
+            </component-button>
         </div>
     </div>
-</div>
+</form>
