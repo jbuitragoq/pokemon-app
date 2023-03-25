@@ -7,7 +7,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent {
-
   @Input() id!: string;
   @Input() label!: string;
   @Input() disabled = false;
@@ -15,5 +14,4 @@ export class ButtonComponent {
   @Input() margin = 'auto';
   @Input() icon = '';
   @Output() clickBtn = new EventEmitter<void>();
-
 }
